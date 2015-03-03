@@ -87,6 +87,8 @@ class MultiSelectField(models.CharField):
         default = super(MultiSelectField, self).get_default()
         if isinstance(default, int):
             default = string_type(default)
+        if isinstance(default, unicode):
+            default = default.split(',')
         return default
 
     def formfield(self, **kwargs):
